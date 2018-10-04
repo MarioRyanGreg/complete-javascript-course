@@ -36,16 +36,18 @@ mark.calculateAge();
 
 console.log(john.lastName);
 console.log(jane.lastName);
-console.log(mark.lastName);*/
+console.log(mark.lastName);
+*/
 
 // Object.create
+
 /*
 var personProto = {
     calculateAge: function() {
         console.log(2016 -
         this.yearOfBirth);
     }
-}
+};
 
 var john = Object.create(personProto);
 john.name = 'John';
@@ -57,7 +59,8 @@ var jane = Object.create(personProto,
     name: { value: 'Jane' },
     yearOfBirth: { value: 1969 },
     job: { value: 'designer' }
-})*/
+});
+*/
 
 // Primitives vs objects
 
@@ -66,10 +69,10 @@ var jane = Object.create(personProto,
 var b = a;
 a = 46;
 console.log(a);
-console.log(b);*/
+console.log(b);
 
 // Objects
-/*var obj1 = {
+var obj1 = {
     name: 'John',
     age: 26
 };
@@ -77,10 +80,10 @@ console.log(b);*/
 var obj2 = obj1;
 obj1.age = 30;
 console.log(obj1.age);
-console.log(obj2.age);*/
+console.log(obj2.age);
 
 // Functions
-/*var age = 27;
+var age = 27;
 var obj = {
     name: 'Jonas',
     city: 'Lisbon'
@@ -99,7 +102,8 @@ console.log(obj.city);*/
 ////////////////////////////
 // Lecture: Passing functions as arguments 
 
-/*var years = [1990, 1965, 1937, 2005, 1998];
+/*
+var years = [1990, 1965, 1937, 2005, 1998];
 
 function arrayCalc(arr, fn) {
     var arrRes = [];
@@ -136,12 +140,14 @@ maxHeartRate);
 
 console.log(ages);
 console.log(fullAges);
-console.log(rates);*/
+console.log(rates);
+*/
 
 /////////////////////////////////
 // Lecture: Functions returning functions
 
-/*function interviewQuestion(job) {
+/*
+function interviewQuestion(job) {
     if (job === 'designer') {
         return function(name) {
             console.log(name + ', can you please explain what UX design is?');
@@ -167,18 +173,17 @@ designerQuestion('Jane');
 designerQuestion('Mark');
 designerQuestion('Mike');
 
-interviewQuestion('teacher')('Mark');*/
+interviewQuestion('teacher')('Mark');
+*/
 
 ///////////////////////////////
 //Lecture: IIFE
 
-/*
 function game() {
     var score = Math.random() * 10;
     console.log(score >= 5);
 }
 game();
-*/
 
 /*(function () {
     var score = Math.random() * 10;
@@ -218,7 +223,7 @@ retirementIceland(1990);*/
 
 //retirement(66)(1990);
 
-function interviewQuestion(job) {
+/*function interviewQuestion(job) {
     return function (name) {
         if (job === 'designer') {
             console.log(name + ', can you please explain what UX design is?');
@@ -230,7 +235,78 @@ function interviewQuestion(job) {
     } 
 }
 
-interviewQuestion('teacher')('John');
+interviewQuestion('teacher')('John');*/
+
+////////////////////////////////////////////
+// Lecture: Bind, call and apply
+
+/*
+var john = {
+    name: 'John',
+    age: 26,
+    job: 'teacher',
+    presentation: function(style, timeOfDay) {
+        if (style === 'formal') {
+            console.log('Good ' + timeOfDay + ', Ladies and gentlemen! I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old.');
+        } else if (style === 'friendly') {
+            console.log('Hey! What\'s up?I\'m ' + this.name + ', I\'m a ' + this.job + ' and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + '.');
+        }
+    }
+};
+
+var emily = {
+    name: 'Emily',
+    age: 35,
+    job: 'designer'
+};
+
+john.presentation('formal', 'morning');
+
+john.presentation.call(emily, 'friendly', 'afternoon');
+*/
+
+//john.presentation.call(emily, ['friendly', 'afternoon']);
+
+/*
+var johnFriendly = john.presentation.bind(john, 'friendly');
+
+johnFriendly('morning');
+johnFriendly('night');
+
+var emilyFormal = john.presentation.bind(emily, 'formal');
+emilyFormal('afternoon');
+
+
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length;
+    i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el) {
+    return 2016 - el;
+}
+
+function isFullAge(limit, el) {
+    return el >= limit;
+}
+
+var ages =  arrayCalc(years, calculateAge);
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+console.log(ages);
+console.log(fullJapan);
+*/
+
+
+
+
+
 
 
 
